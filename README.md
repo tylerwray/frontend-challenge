@@ -51,7 +51,7 @@ DELETE /movies/1
 
 Additionally, queries and mutations are available for the `Movie` type below. Please note that due to limitations of `json-server` these types are auto-defined and are not exactly correct as if this were a prod environment:
 
-```
+```graphql
 type Movie {
   id: ID!
   originalLanguage: String!
