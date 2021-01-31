@@ -2,6 +2,10 @@ import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import IconStar from './assets/IconStar';
 
+const Container = styled.div`
+  padding: 48px 52px;
+`;
+
 const Heading = styled.div`
   font-weight: bold;
   font-size: 32px;
@@ -10,7 +14,7 @@ const Heading = styled.div`
 `;
 
 const Subtle = styled.span`
-  color: rgb(187, 186, 186);
+  color: var(--light-gray);
 `;
 
 const Movie = styled.div`
@@ -31,7 +35,6 @@ const Grid = styled.div`
 
 const Poster = styled.img`
   width: 100%;
-  height: 100%;
   border-radius: 4px;
   object-fit: cover;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5);
@@ -79,17 +82,18 @@ const DetailsLink = styled.a`
   color: white;
   text-align: center;
   padding: 16px;
+  display: block;
 
-  display: none;
+  visibility: hidden;
 
   ${Movie}:hover & {
-    display: block;
+    visibility: visible;
   }
 `;
 
 const TopMovies = ({ movies }) => {
   return (
-    <>
+    <Container>
       <Heading>
         <Subtle>Movies:</Subtle> Top 5
       </Heading>
@@ -111,7 +115,7 @@ const TopMovies = ({ movies }) => {
           </Movie>
         ))}
       </Grid>
-    </>
+    </Container>
   );
 };
 

@@ -4,6 +4,7 @@
 
 :root {
   --blue: rgb(34, 69, 225);
+  --light-gray: rgb(187, 186, 186);
 }
 
 html, body, main, main>div {
