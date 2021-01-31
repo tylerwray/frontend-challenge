@@ -1,42 +1,32 @@
-import './Home.css';
+import styled from 'styled-components/macro';
 import { useFetchAllMovies } from './rest';
+import TopMovies from './TopMovies';
 
-/**
- * You have the option to use either REST
- * or GraphQL, whichever you prefer.
- *
- * Defaults to REST.
- *
- * Use `graphql/useAllMoviesQuery` instead for
- * GraphQL.
- **/
+const Container = styled.div`
+  padding: 48px 80px;
+`;
+
 const Home = () => {
   const { data, loading } = useFetchAllMovies();
 
-  return (
-    <div className="home-container">
-      <h1>Popular Movies</h1>
+  // TODO: Add a nice loading state
+  if (loading) return null;
 
-      {loading ? (
-        <div>Loading movies...</div>
-      ) : (
-        <ol>
-          {data.map(movie => (
-            <li key={movie.id}>
-              {movie.title}
-              <ul>
-                <li>Release Date: {movie.releaseDate}</li>
-                <li>Description: {movie.overview}</li>
-                <li>Average Vote: {movie.voteAverage}</li>
-                <li>Total Votes: {movie.voteCount}</li>
-                <li>Genres: {movie.genres.join(', ')}</li>
-              </ul>
-            </li>
-          ))}
-        </ol>
-      )}
-    </div>
+  const topMovies = data.sort(byRating).slice(0, 5);
+
+  return (
+    <Container>
+      <TopMovies movies={topMovies} />
+    </Container>
   );
 };
+
+/*
+ * Sort movies by their "rating".
+ *
+ * Rating is determined by the popularity value of each movie.
+ */
+const byRating = (movieOne, movieTwo) =>
+  movieOne.popularity < movieTwo.popularity;
 
 export default Home;
