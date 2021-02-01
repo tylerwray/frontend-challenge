@@ -1,4 +1,5 @@
 import { useFetchAllMovies } from './rest';
+import AllMovies from './AllMovies';
 import Genres from './Genres';
 import TopMovies from './TopMovies';
 
@@ -8,22 +9,15 @@ const Home = () => {
   // TODO: Add a nice loading state
   if (loading) return null;
 
-  const topMovies = data.sort(byRating).slice(0, 5);
+  console.log(data[0]);
 
   return (
     <>
-      <TopMovies movies={topMovies} />
-      <Genres movies={data} />
+      <TopMovies movies={data} />
+      <Genres />
+      <AllMovies movies={data} />
     </>
   );
 };
-
-/*
- * Sort movies by their "rating".
- *
- * Rating is determined by the popularity value of each movie.
- */
-const byRating = (movieOne, movieTwo) =>
-  movieOne.popularity < movieTwo.popularity;
 
 export default Home;

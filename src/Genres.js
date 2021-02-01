@@ -20,9 +20,23 @@ const FILTERS = [
   }
 ];
 
+const Genres = () => (
+  <Container>
+    <Subtle>Browse</Subtle>
+    <Heading>by Genre</Heading>
+    <Grid>
+      {FILTERS.map(({ title, route }) => (
+        <Link key={title} to={route} component={Filter}>
+          {title}
+        </Link>
+      ))}
+    </Grid>
+  </Container>
+);
+
 const Container = styled.div`
   background-color: rgb(244, 245, 251);
-  padding-top: 52px;
+  padding-top: 56px;
   padding-right: 60px;
   padding-bottom: 80px;
   padding-left: 60px;
@@ -53,26 +67,22 @@ const Filter = styled.a`
   font-weight: 900;
   padding: 96px 0px;
   text-align: center;
+  border-radius: 4px;
   background: linear-gradient(
-    -225deg,
+    135deg,
     rgb(154, 76, 237) 0%,
     rgb(134, 127, 239) 46%,
     rgb(127, 199, 242) 100%
   );
-`;
 
-const Genres = ({ movies }) => (
-  <Container>
-    <Subtle>Browse</Subtle>
-    <Heading>by Genre</Heading>
-    <Grid>
-      {FILTERS.map(({ title, route }) => (
-        <Link key={title} to={route} component={Filter}>
-          {title}
-        </Link>
-      ))}
-    </Grid>
-  </Container>
-);
+  &:hover {
+    background: linear-gradient(
+      145deg,
+      rgb(154, 76, 237) 0%,
+      rgb(134, 127, 239) 40%,
+      rgb(127, 199, 242) 100%
+    );
+  }
+`;
 
 export default Genres;

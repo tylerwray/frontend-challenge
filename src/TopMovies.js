@@ -2,6 +2,44 @@ import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import IconStar from './assets/IconStar';
 
+const TopMovies = ({ movies }) => {
+  const topMovies = [...movies].sort(byRating).slice(0, 5);
+
+  return (
+    <Container>
+      <Heading>
+        <Subtle>Movies:</Subtle> Top 5
+      </Heading>
+      <Grid>
+        {topMovies.map(movie => (
+          <Movie key={movie.id}>
+            <Poster src={movie.posterPath} alt={movie.title} />
+            <Description>
+              <Title>{movie.title}</Title>
+              <Vote>
+                <IconStar />
+                <Average>{movie.voteAverage}</Average>
+              </Vote>
+            </Description>
+            <Genres>{movie.genres.join(', ')}</Genres>
+            <Link to={`/movies/${movie.id}`} component={DetailsLink}>
+              View Details
+            </Link>
+          </Movie>
+        ))}
+      </Grid>
+    </Container>
+  );
+};
+
+/*
+ * Sort movies by their "rating".
+ *
+ * Rating is determined by the popularity value of each movie.
+ */
+const byRating = (movieOne, movieTwo) =>
+  movieTwo.popularity - movieOne.popularity;
+
 const Container = styled.div`
   padding: 48px 52px;
 `;
@@ -20,6 +58,8 @@ const Subtle = styled.span`
 const Movie = styled.div`
   padding: 16px;
   border-radius: 4px;
+  box-shadow: none;
+  transition: box-shadow 300ms ease;
 
   &:hover {
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
@@ -38,9 +78,10 @@ const Poster = styled.img`
   border-radius: 4px;
   object-fit: cover;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 300ms ease;
 
   ${Movie}:hover & {
-    box-shadow: unset;
+    box-shadow: none;
   }
 `;
 
@@ -90,33 +131,5 @@ const DetailsLink = styled.a`
     visibility: visible;
   }
 `;
-
-const TopMovies = ({ movies }) => {
-  return (
-    <Container>
-      <Heading>
-        <Subtle>Movies:</Subtle> Top 5
-      </Heading>
-      <Grid>
-        {movies.map(movie => (
-          <Movie key={movie.id}>
-            <Poster src={movie.posterPath} alt={movie.title} />
-            <Description>
-              <Title>{movie.title}</Title>
-              <Vote>
-                <IconStar />
-                <Average>{movie.voteAverage}</Average>
-              </Vote>
-            </Description>
-            <Genres>{movie.genres.join(', ')}</Genres>
-            <Link to={`/movies/${movie.id}`} component={DetailsLink}>
-              View Details
-            </Link>
-          </Movie>
-        ))}
-      </Grid>
-    </Container>
-  );
-};
 
 export default TopMovies;

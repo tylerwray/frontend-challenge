@@ -1,6 +1,15 @@
 import styled from 'styled-components/macro';
 import IconLogo from './assets/IconLogo';
 
+const Header = () => (
+  <Nav>
+    <Logo>
+      <IconLogo />
+    </Logo>
+    <Heading>Reel Cinema</Heading>
+  </Nav>
+);
+
 const Nav = styled.nav`
   display: flex;
   align-items: center;
@@ -16,14 +25,5 @@ const Heading = styled.h1`
   padding-left: 24px;
   margin: unset;
 `;
-
-const Header = () => (
-  <Nav>
-    <Logo>
-      <IconLogo />
-    </Logo>
-    <Heading>Reel Cinema</Heading>
-  </Nav>
-);
 
 export default Header;
