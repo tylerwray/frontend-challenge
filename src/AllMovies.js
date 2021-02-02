@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
+
 import chevron from './assets/Chevron.png';
 
 const SORT_OPTIONS = [
@@ -21,7 +22,7 @@ const SORT_OPTIONS = [
     value: 'runtime'
   },
   {
-    title: 'budget',
+    title: 'Budget',
     value: 'budget'
   }
 ];
@@ -77,7 +78,7 @@ const AllMovies = ({ movies }) => {
       </Header>
       <Grid>
         {sortedMovies.map(movie => (
-          <Link to={`/movies/${movie.id}`} key={movie.id}>
+          <Link to={`/movies/${movie.id}?from=all_movies`} key={movie.id}>
             <Poster src={movie.posterPath} alt={movie.title} />
           </Link>
         ))}

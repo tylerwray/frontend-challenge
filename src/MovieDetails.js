@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Link, useLocation, useRouteMatch } from 'react-router-dom';
-import queryString from 'query-string';
-import IconBackArrow from './assets/IconBackArrow';
+import { useRouteMatch } from 'react-router-dom';
 import IconStar from './assets/IconStar';
 import { useMovie } from './graphql';
+import Breadcrumb from './Breadcrumb';
+import Cast from './Cast';
 
 const MovieDetails = () => {
   const { params } = useRouteMatch();
@@ -24,7 +24,7 @@ const MovieDetails = () => {
     voteAverage
   } = data;
 
-  const date = new Date(releaseDate);
+  const year = new Date(releaseDate).getFullYear();
 
   return (
     <Container>
@@ -37,22 +37,14 @@ const MovieDetails = () => {
             <Average>{voteAverage}</Average> <Total>/10</Total>
           </Vote>
           <Title>
-            {title} <Year>({date.getFullYear()})</Year>
+            {title} <Year>({year})</Year>
           </Title>
           <Genres>{genres.join(', ')}</Genres>
           <Director>Director: {director.name}</Director>
           <Overview>{overview}</Overview>
         </Description>
       </Details>
-      <div>
-        {cast.map(member => (
-          <div key={member.order}>
-            <img src={member.profilePath} alt={member.name} />
-            <div>{member.name}</div>
-            <div>{member.character}</div>
-          </div>
-        ))}
-      </div>
+      <Cast cast={cast} />
     </Container>
   );
 };
@@ -67,7 +59,8 @@ const Portait = styled.img`
 `;
 
 const Details = styled.div`
-  padding: 24px 0;
+  padding-top: 24px;
+  padding-bottom: 60px;
   display: flex;
 `;
 
@@ -124,35 +117,6 @@ const Director = styled.div`
 const Overview = styled.div`
   font-size: 20px;
   color: var(--gray);
-`;
-
-const crumbs = {
-  top_movies: 'Top 5'
-};
-
-const Breadcrumb = () => {
-  const { search } = useLocation();
-
-  const { from } = queryString.parse(search);
-
-  return (
-    <Link to="/" component={Crumb}>
-      <IconBackArrow />
-      <Subtle>Movies:</Subtle> {crumbs[from]}
-    </Link>
-  );
-};
-
-const Crumb = styled.a`
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-`;
-
-const Subtle = styled.span`
-  padding-left: 16px;
-  color: var(--light-gray);
 `;
 
 export default MovieDetails;
