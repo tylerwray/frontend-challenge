@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import IconStar from './assets/IconStar';
@@ -22,7 +23,10 @@ const TopMovies = ({ movies }) => {
               </Vote>
             </Description>
             <Genres>{movie.genres.join(', ')}</Genres>
-            <Link to={`/movies/${movie.id}`} component={DetailsLink}>
+            <Link
+              to={`/movies/${movie.id}?from=top_movies`}
+              component={DetailsLink}
+            >
               View Details
             </Link>
           </Movie>
@@ -124,11 +128,12 @@ const DetailsLink = styled.a`
   text-align: center;
   padding: 16px;
   display: block;
+  transition: opacity 300ms ease;
 
-  visibility: hidden;
+  opacity: 0;
 
   ${Movie}:hover & {
-    visibility: visible;
+    opacity: 1;
   }
 `;
 

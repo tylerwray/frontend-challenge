@@ -29,10 +29,8 @@ const ALL_MOVIES_QUERY = gql`
   }
 `;
 
-const useAllUnreadCountQuery = () => {
-  const { data, loading, error } = useQuery(ALL_MOVIES_QUERY, {
-    fetchPolicy: 'cache-and-network'
-  });
+const useAllMovies = () => {
+  const { data, loading, error } = useQuery(ALL_MOVIES_QUERY);
 
   const result = data?.allMovies ?? [];
 
@@ -43,4 +41,4 @@ const useAllUnreadCountQuery = () => {
   };
 };
 
-export default useAllUnreadCountQuery;
+export default useAllMovies;

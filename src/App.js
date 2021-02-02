@@ -1,7 +1,10 @@
-import Home from './Home';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Layout from './Layout';
 import Header from './Header';
+
+import Home from './Home';
+import MovieDetails from './MovieDetails';
 
 /**
  * This function is used to simulate performance benchmarking.
@@ -31,6 +34,7 @@ const App = () => {
       <Layout>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/movies/:movieId" exact component={MovieDetails} />
         </Switch>
       </Layout>
     </>
