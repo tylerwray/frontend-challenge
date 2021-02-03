@@ -8,8 +8,8 @@ import { gql } from 'apollo-boost';
  * regardless.
  **/
 const ALL_MOVIES_QUERY = gql`
-  query allMovies {
-    allMovies {
+  query AllMovies($filter: MovieFilter, $sortField: String) {
+    allMovies(filter: $filter, sortField: $sortField, sortOrder: "desc") {
       id
       originalLanguage
       originalTitle
@@ -29,8 +29,8 @@ const ALL_MOVIES_QUERY = gql`
   }
 `;
 
-const useAllMovies = () => {
-  const { data, loading, error } = useQuery(ALL_MOVIES_QUERY);
+const useAllMovies = variables => {
+  const { data, loading, error } = useQuery(ALL_MOVIES_QUERY, { variables });
 
   const result = data?.allMovies ?? [];
 

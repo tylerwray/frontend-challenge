@@ -56,6 +56,7 @@ const Container = styled.div`
 const Portait = styled.img`
   border-radius: 4px;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5);
+  height: fit-content;
 `;
 
 const Details = styled.div`

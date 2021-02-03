@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
+import { useAllMovies } from './graphql';
 
 import chevron from './assets/Chevron.png';
 
@@ -27,46 +28,36 @@ const SORT_OPTIONS = [
   }
 ];
 
-const byNumber = property => (movieOne, movieTwo) =>
-  movieTwo[property] - movieOne[property];
+const AllMovies = ({ genre = 'all', header }) => {
+  const [sortField, setSortField] = useState(SORT_OPTIONS[0].value);
 
-const byDate = property => (movieOne, movieTwo) =>
-  new Date(movieTwo[property]) - new Date(movieOne[property]);
+  const handleSortFieldChange = event => setSortField(event.target.value);
 
-const byString = property => (movieOne, movieTwo) => {
-  if (movieOne[property] < movieTwo[property]) return -1;
-  if (movieOne[property] > movieTwo[property]) return 1;
-  return 0;
-};
+  const genreFilters = {
+    comedy: ['Comedy'],
+    action: ['Action'],
+    mystery: ['Mystery'],
+    crime: ['Crime'],
+    all: []
+  };
 
-const SORTERS = {
-  popularity: byNumber('popularity'),
-  releaseDate: byDate('releaseDate'),
-  title: byString('title'),
-  runtime: byNumber('title'),
-  budget: byNumber('budget')
-};
+  const { data: movies, loading } = useAllMovies({
+    filter: { genres: genreFilters[genre] },
+    sortField
+  });
 
-const AllMovies = ({ movies }) => {
-  const [sortProperty, setSortProperty] = useState(SORT_OPTIONS[0].value);
-
-  const handleSortPropertyChange = event => setSortProperty(event.target.value);
-
-  const sortedMovies = [...movies].sort(SORTERS[sortProperty]);
+  if (loading) return null;
 
   return (
     <Container>
-      <Header>
-        <div>
-          <Subtle>Movies</Subtle>
-          <Heading>Browse All</Heading>
-        </div>
+      <Toolbar>
+        <Header>{header}</Header>
         <Sort>
           <Label htmlFor="all-movie-sort">Sort by</Label>
           <Select
             id="all-movie-sort"
-            value={sortProperty}
-            onChange={handleSortPropertyChange}
+            value={sortField}
+            onChange={handleSortFieldChange}
           >
             {SORT_OPTIONS.map(({ title, value }) => (
               <option value={value} key={value}>
@@ -75,9 +66,9 @@ const AllMovies = ({ movies }) => {
             ))}
           </Select>
         </Sort>
-      </Header>
+      </Toolbar>
       <Grid>
-        {sortedMovies.map(movie => (
+        {movies.map(movie => (
           <Link to={`/movies/${movie.id}?from=all_movies`} key={movie.id}>
             <Poster src={movie.posterPath} alt={movie.title} />
           </Link>
@@ -91,26 +82,18 @@ const Container = styled.div`
   padding: 56px 60px;
 `;
 
-const Header = styled.div`
+const Toolbar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 `;
 
-const Subtle = styled.span`
-  color: var(--light-gray);
-  font-size: 24px;
-  font-weight: bold;
-`;
-
-const Heading = styled.div`
-  font-weight: bold;
-  font-size: 48px;
-  padding-bottom: 24px;
+const Header = styled.div`
+  padding-bottom: 32px;
 `;
 
 const Sort = styled.div`
-  padding: 32px 0;
+  padding-bottom: 32px;
 `;
 
 const Label = styled.label`

@@ -5,8 +5,12 @@ import queryString from 'query-string';
 import IconBackArrow from './assets/IconBackArrow';
 
 const crumbs = {
-  top_movies: 'Top 5',
-  all_movies: 'All'
+  action: 'Action',
+  all_movies: 'All',
+  comedy: 'Comedy',
+  crime: 'True Crime',
+  mystery: 'Mystery',
+  top_movies: 'Top 5'
 };
 
 const Breadcrumb = () => {

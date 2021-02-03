@@ -5,29 +5,29 @@ import styled from 'styled-components/macro';
 const FILTERS = [
   {
     title: 'Comedy',
-    route: '/genres/comedy'
+    route: '/genres/comedy?from=comedy'
   },
   {
     title: 'Action',
-    route: '/genres/action'
+    route: '/genres/action?from=action'
   },
   {
     title: 'Mystery',
-    route: '/genres/mystery'
+    route: '/genres/mystery?from=mystery'
   },
   {
     title: 'True Crime',
-    route: '/genres/true-crime'
+    route: '/genres/crime?from=crime'
   }
 ];
 
-const Genres = () => (
+const GenrePicker = () => (
   <Container>
     <Subtle>Browse</Subtle>
     <Heading>by Genre</Heading>
     <Grid>
       {FILTERS.map(({ title, route }) => (
-        <Link key={title} to={route} component={Filter}>
+        <Link key={title} to={`${route}`} component={Filter}>
           {title}
         </Link>
       ))}
@@ -86,4 +86,4 @@ const Filter = styled.a`
   }
 `;
 
-export default Genres;
+export default GenrePicker;

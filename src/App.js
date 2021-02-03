@@ -5,6 +5,7 @@ import Header from './Header';
 
 import Home from './Home';
 import MovieDetails from './MovieDetails';
+import Genre from './Genre';
 
 /**
  * This function is used to simulate performance benchmarking.
@@ -35,6 +36,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/movies/:movieId" exact component={MovieDetails} />
+          <Route path="/genres/:genre" exact component={Genre} />
         </Switch>
       </Layout>
     </>
