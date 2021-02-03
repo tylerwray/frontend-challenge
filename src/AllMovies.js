@@ -41,12 +41,10 @@ const AllMovies = ({ genre = 'all', header }) => {
     all: []
   };
 
-  const { data: movies, loading } = useAllMovies({
+  const { data: movies } = useAllMovies({
     filter: { genres: genreFilters[genre] },
     sortField
   });
-
-  if (loading) return null;
 
   return (
     <Container>

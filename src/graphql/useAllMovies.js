@@ -7,7 +7,7 @@ import { gql } from 'apollo-boost';
  * associated type, but will return the full set of data
  * regardless.
  **/
-const ALL_MOVIES_QUERY = gql`
+export const ALL_MOVIES_QUERY = gql`
   query AllMovies($filter: MovieFilter, $sortField: String) {
     allMovies(filter: $filter, sortField: $sortField, sortOrder: "desc") {
       id

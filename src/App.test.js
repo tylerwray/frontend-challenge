@@ -1,9 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from './test-utils';
+
 import App from './App';
 
-test('renders the home page with a title', () => {
-  render(<App />, { wrapper: MemoryRouter });
-  const titleElement = screen.getByText(/Popular Movies/i);
-  expect(titleElement).toBeInTheDocument();
+test('shows the top 5 movies on the home page', async () => {
+  render(<App />);
+  await screen.findByText('Outside the Wire');
+  screen.getByText('Skylines');
+  screen.getByText('Wonder Woman 1984');
+  screen.getByText('Soul');
+  screen.getByText('Ava');
 });

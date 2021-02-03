@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
+import { useAllMovies } from './graphql';
 import IconStar from './assets/IconStar';
 
-const TopMovies = ({ movies }) => {
-  const topMovies = [...movies].sort(byRating).slice(0, 5);
+const TopMovies = () => {
+  // Sort top movies by the 'popularity' field
+  const { data: movies, error } = useAllMovies({ sortField: 'popularity' });
+
+  const topMovies = movies.slice(0, 5);
 
   return (
     <Container>
@@ -35,14 +39,6 @@ const TopMovies = ({ movies }) => {
     </Container>
   );
 };
-
-/*
- * Sort movies by their "rating".
- *
- * Rating is determined by the popularity value of each movie.
- */
-const byRating = (movieOne, movieTwo) =>
-  movieTwo.popularity - movieOne.popularity;
 
 const Container = styled.div`
   padding: 48px 52px;

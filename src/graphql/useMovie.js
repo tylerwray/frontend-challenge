@@ -7,7 +7,7 @@ import { gql } from 'apollo-boost';
  * associated type, but will return the full set of data
  * regardless.
  **/
-const MOVIE_QUERY = gql`
+export const MOVIE_QUERY = gql`
   query Movie($id: ID!) {
     Movie(id: $id) {
       id
