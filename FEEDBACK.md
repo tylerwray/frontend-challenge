@@ -16,3 +16,4 @@
 6. Love that we have a basic working app for them. Simulates a real world experience of iterating on top of designs.
 7. These designs are so great. The images are so fun. I feel PROUD building something like this. It’s fun!
 8. I’m not seeing the asset for the person placeholder on the movie details screen.... I just ended up not doing that part.
+9. Whenever I do a challenge like this for a prospective employer, I ALWAYS try and deploy it to go above & beyond. The JSON-server thing doesn't let me do that. I'd love to spin up a live server at podium to provide the API.
