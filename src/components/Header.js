@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import IconLogo from './assets/IconLogo';
+
+import IconLogo from 'assets/IconLogo';
 
 const Header = () => (
   <Nav>

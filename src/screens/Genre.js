@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import AllMovies from './AllMovies';
-import Breadcrumb from './Breadcrumb';
+
+import { AllMovies, Breadcrumb } from 'components';
 
 const Genre = () => {
   const { params } = useRouteMatch();

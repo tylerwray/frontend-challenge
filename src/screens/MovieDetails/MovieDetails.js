@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useRouteMatch } from 'react-router-dom';
-import IconStar from './assets/IconStar';
-import { useMovie } from './graphql';
-import Breadcrumb from './Breadcrumb';
+
+import IconStar from 'assets/IconStar';
+import { Breadcrumb } from 'components';
+import { useMovie } from 'hooks/graphql';
+
 import Cast from './Cast';
 
 const MovieDetails = () => {
   const { params } = useRouteMatch();
   const { data, loading } = useMovie(params.movieId);
 
-  // TODO: Add a nice loading state
   if (loading) return null;
 
   const {

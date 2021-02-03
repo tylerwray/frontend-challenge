@@ -1,7 +1,6 @@
 # Podium frontend take-home challenge
 Thank you for taking the time to complete this assessment. This application contains the necessary starting grounds for you to complete the tasks as outlined below. Please take as much time as you feel is necessary to demonstrate your ability. Unless otherwise stated, you are expected to document and test along the way as you see fit. 
 
-
 ## Project Description
 Your task is to build an application that matches the design mock-ups ([as found here](https://share.goabstract.com/b949487b-4df0-4431-8ca3-6cd912096898)) around a list of popular movies from [The Movie Database](https://www.themoviedb.org/). All assests are provided to you in the app. You are welcome to use them however you prefer. This assessment is broken into two separate parts, the first being to convert the data provided to meet the designs you have been given. Here are some important things to keep in mind:
 

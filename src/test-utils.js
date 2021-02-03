@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import { MockedProvider } from '@apollo/client/testing';
 import { MemoryRouter } from 'react-router-dom';
-import { ALL_MOVIES_QUERY } from './graphql';
+
+import { ALL_MOVIES_QUERY } from 'hooks/graphql';
 
 const allMovies = {
   request: {

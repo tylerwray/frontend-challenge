@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
-import IconBackArrow from './assets/IconBackArrow';
+
+import IconBackArrow from 'assets/IconBackArrow';
 
 const crumbs = {
   action: 'Action',

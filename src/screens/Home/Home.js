@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import AllMovies from './AllMovies';
+
+import { AllMovies } from 'components';
+
 import GenrePicker from './GenrePicker';
 import TopMovies from './TopMovies';
 

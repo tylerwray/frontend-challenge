@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import { useAllMovies } from './graphql';
-import IconStar from './assets/IconStar';
+
+import { useAllMovies } from 'hooks/graphql';
+import IconStar from 'assets/IconStar';
 
 const TopMovies = () => {
   // Sort top movies by the 'popularity' field
-  const { data: movies, error } = useAllMovies({ sortField: 'popularity' });
+  const { data: movies } = useAllMovies({ sortField: 'popularity' });
 
   const topMovies = movies.slice(0, 5);
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import { useAllMovies } from './graphql';
 
-import chevron from './assets/Chevron.png';
+import { useAllMovies } from 'hooks/graphql';
+import chevron from 'assets/Chevron.png';
 
 const SORT_OPTIONS = [
   {

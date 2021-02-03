@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Layout from './Layout';
-import Header from './Header';
 
-import Home from './Home';
-import MovieDetails from './MovieDetails';
-import Genre from './Genre';
+import { Layout, Header } from 'components';
+
+import Home from 'screens/Home';
+import MovieDetails from 'screens/MovieDetails';
+import Genre from 'screens/Genre';
 
 /**
  * This function is used to simulate performance benchmarking.
